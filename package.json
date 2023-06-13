@@ -1,0 +1,37 @@
+{
+  "name": "codebridge-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev ts-node-dev src/index.ts",
+    "start": "cross-env NODE_ENV=prod && rm -rf ./build && tsc && node build/src/index",
+    "test": "cross-env NODE_ENV=test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ahmed-Yassen/codebridge-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ahmed-Yassen/codebridge-task/issues"
+  },
+  "homepage": "https://github.com/Ahmed-Yassen/codebridge-task#readme",
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^7.0.1",
+    "sequelize": "^6.32.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.3.1",
+    "sequelize-typescript": "^2.1.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.3"
+  }
+}
