@@ -1,9 +1,10 @@
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import dotenv from "dotenv";
+import path from "path";
 console.log(__filename);
 dotenv.config({
-  path: __dirname + `/../../config/${process.env.NODE_ENV}.env`,
+  path: path.join(__dirname + `/../../config/${process.env.NODE_ENV}.env`),
 });
 
 const app = express();
