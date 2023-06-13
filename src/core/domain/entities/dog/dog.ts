@@ -1,6 +1,7 @@
 import { InvalidEntityInput } from "../../../application/errors/InvalidEntityInput";
 import BaseEntity from "../BaseEntity";
 import JSONBaseEntity from "../JSONBaseEntity";
+import JSONDog from "./JSONDog";
 import { dogValidator } from "./dogValidator";
 
 export default class Dog extends BaseEntity {
@@ -64,7 +65,7 @@ export default class Dog extends BaseEntity {
     return this.weight;
   }
 
-  toJSON(): JSONBaseEntity {
+  toJSON(): JSONDog {
     return {
       name: this.name,
       color: this.color,
