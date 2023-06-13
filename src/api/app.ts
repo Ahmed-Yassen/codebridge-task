@@ -2,7 +2,8 @@ import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import dotenv from "dotenv";
 import path from "path";
-console.log(__filename);
+import apiRouter from "./routes/api.router";
+
 dotenv.config({
   path: path.join(__dirname + `/../../config/${process.env.NODE_ENV}.env`),
 });
@@ -11,8 +12,7 @@ const app = express();
 
 app.use(express.json());
 
-//- Routes List
-// app.use([]);
+app.use(apiRouter);
 
 //- Not Found Middleware
 app.all("*", () => {

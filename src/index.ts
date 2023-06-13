@@ -29,7 +29,7 @@ const start = async () => {
   });
 
   console.log("Connected to db successfully");
-  app.listen(() => {
+  app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
   });
 };
