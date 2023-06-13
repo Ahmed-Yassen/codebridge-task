@@ -3,6 +3,8 @@ import "express-async-errors";
 import dotenv from "dotenv";
 import path from "path";
 import apiRouter from "./routes/api.router";
+import { errorHandler } from "./middlewares/error-handler";
+import { NotFoundError } from "../core/application/errors/NotFoundError";
 
 dotenv.config({
   path: path.join(__dirname + `/../../config/${process.env.NODE_ENV}.env`),
@@ -16,12 +18,10 @@ app.use(apiRouter);
 
 //- Not Found Middleware
 app.all("*", () => {
-  throw new Error("404 Not Found");
+  throw new NotFoundError("URL");
 });
 
 //- Catch Any Error Middleware
-app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
-  res.status(500).json({ message: "Something went wrong!" });
-});
+app.use(errorHandler);
 
 export default app;

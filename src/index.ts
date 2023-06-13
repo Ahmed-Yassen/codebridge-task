@@ -6,7 +6,6 @@ const PORT = process.env.SERVER_PORT || 3000;
 
 const start = async () => {
   await connection.sync();
-
   const dogsRepository = connection.getRepository(DBDog);
   await dogsRepository.findOrCreate({
     where: { name: "Neo" },
