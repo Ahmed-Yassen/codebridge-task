@@ -26,14 +26,14 @@ export class DBDog extends Model<DBDogAttributes, DBDogCreationAttributes> {
   name!: string;
 
   @Length({ min: 3, max: 35 })
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.STRING, allowNull: false })
   color!: string;
 
   @Min(1)
-  @Column({ type: DataType.INTEGER })
+  @Column({ type: DataType.INTEGER, allowNull: false })
   tail_length!: number;
 
   @Min(1)
-  @Column({ type: DataType.INTEGER })
+  @Column({ type: DataType.INTEGER, allowNull: false })
   weight!: number;
 }

@@ -30,7 +30,7 @@ const DogSchema: JSONSchemaType<Dog> = {
       minimum: 1,
     },
   },
-  required: ["name"],
+  required: ["name", "color", "tail_length", "weight"],
   additionalProperties: false,
   errorMessage: {
     properties: {
