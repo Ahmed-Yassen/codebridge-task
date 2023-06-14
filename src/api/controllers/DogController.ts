@@ -31,27 +31,25 @@ class DogController {
       {
         limit?: string;
         offset?: string;
-        orderBy?: {
-          name?: string;
-          color?: string;
-          tail_length?: string;
-          weight?: string;
-        };
+        attribute?: string;
+        order?: string;
       }
     >,
     res: Response
   ) {
     const getDogsUseCase = new GetDogsUseCase(dogRepository);
     const getDogsUseCaseInput = new GetDogsUseCaseInput();
+    let { limit, offset, attribute, order } = req.query;
 
-    if (req.query.limit) getDogsUseCaseInput.setLimit(req.query.limit);
-    if (req.query.offset) getDogsUseCaseInput.setOffset(req.query.offset);
-    if (req.query.orderBy) {
-      const { name, color, tail_length, weight } = req.query.orderBy;
-      if (name) getDogsUseCaseInput.setOrderByName(name);
-      if (color) getDogsUseCaseInput.setOrderByColor(color);
-      if (tail_length) getDogsUseCaseInput.setOrderByTailLength(tail_length);
-      if (weight) getDogsUseCaseInput.setOrderByWeight(weight);
+    if (limit) getDogsUseCaseInput.setLimit(limit);
+    if (offset) getDogsUseCaseInput.setOffset(offset);
+    if (attribute) {
+      attribute = attribute.toLowerCase();
+      if (attribute === "name") getDogsUseCaseInput.setOrderByName(order);
+      if (attribute === "color") getDogsUseCaseInput.setOrderByColor(order);
+      if (attribute === "tail_length")
+        getDogsUseCaseInput.setOrderByTailLength(order);
+      if (attribute === "weight") getDogsUseCaseInput.setOrderByWeight(order);
     }
 
     const paginatedDogs = await getDogsUseCase.exec(getDogsUseCaseInput);

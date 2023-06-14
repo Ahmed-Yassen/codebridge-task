@@ -42,7 +42,7 @@ export class DogRepository implements IDogRepository {
   ): Promise<PaginatedEntityList<Dog>> {
     let _limit = 20;
     let _offset = 0;
-    const order: Order = [];
+    let order: Order = [];
 
     if (query?.limit) {
       _limit = query.limit > 50 ? 50 : query.limit;
@@ -50,12 +50,15 @@ export class DogRepository implements IDogRepository {
     if (query?.offset) {
       _offset = query.offset;
     }
+
+    order.push(["name", "asc"]); // set order by name asc as the default order
     if (query?.orderBy) {
+      order = [];
       if (query.orderBy.name) order.push(["name", query.orderBy.name]);
       if (query.orderBy.color) order.push(["color", query.orderBy.color]);
       if (query.orderBy.tail_length)
         order.push(["tail_length", query.orderBy.tail_length]);
-      if (query.orderBy.weight) order.push(["name", query.orderBy.weight]);
+      if (query.orderBy.weight) order.push(["weight", query.orderBy.weight]);
     }
 
     const dbDogs = await this.repo.findAll({
